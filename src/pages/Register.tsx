@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { useCurrentToken } from '../redux/features/auth/authSlice';
+import {
+  selectCurrentUser,
+  useCurrentToken,
+} from '../redux/features/auth/authSlice';
 import { useCreateUserMutation } from '../redux/features/user/userApi';
 import { useAppSelector } from '../redux/hooks';
 import { IUserRegisterInput } from '../types/userRegister.type';
@@ -12,12 +15,13 @@ const Register = () => {
   const [createUser] = useCreateUserMutation();
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<IUserRegisterInput>();
+  const user = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
     if (token) {
-      navigate('/user/dashboard');
+      navigate(`/${user?.role}/dashboard`);
     }
-  }, [navigate, token]);
+  }, [navigate, token, user]);
 
   const onSubmit: SubmitHandler<IUserRegisterInput> = async (data) => {
     const toastId = toast.loading('Registration in progress...');

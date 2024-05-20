@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { selectCurrentUser } from '../redux/features/auth/authSlice';
+import { useAppSelector } from '../redux/hooks';
 import { TProduct } from '../types/item.type';
 
 type TTableRowProps = {
@@ -17,6 +19,7 @@ const ItemTableRow = ({
   generateModal,
 }: TTableRowProps) => {
   const navigate = useNavigate();
+  const user = useAppSelector(selectCurrentUser);
 
   const handleClick = () => {
     generateModal(row);
@@ -58,7 +61,7 @@ const ItemTableRow = ({
         </button>
         <button
           className="btn btn-sm btn-outline btn-accent"
-          onClick={() => navigate(`/user/single-item/${row._id}`)}
+          onClick={() => navigate(`/${user?.role}/single-item/${row._id}`)}
         >
           Show Details
         </button>

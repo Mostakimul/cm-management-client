@@ -1,12 +1,12 @@
-import Dashboard from '../pages/user/Dashboard';
-import AddNewItem from '../pages/user/itemManagement/AddNewItem';
-import AllItems from '../pages/user/itemManagement/AllItems';
-import SingleItem from '../pages/user/itemManagement/SingleItem';
-import UpdateItem from '../pages/user/itemManagement/UpdateItem';
-import AllSales from '../pages/user/salesManagement/AllSales';
-import SellingDetailsItem from '../pages/user/salesManagement/SellingDetailsItem';
+import Dashboard from '../pages/admin/Dashboard';
+import AddNewItem from '../pages/admin/itemManagement/AddNewItem';
+import AllItems from '../pages/admin/itemManagement/AllItems';
+import SingleItem from '../pages/admin/itemManagement/SingleItem';
+import UpdateItem from '../pages/admin/itemManagement/UpdateItem';
+import AllSales from '../pages/admin/salesManagement/AllSales';
+import SellingDetailsItem from '../pages/admin/salesManagement/SellingDetailsItem';
 
-export const userPaths = [
+export const buyerPath = [
   {
     name: 'Dashboard',
     path: 'dashboard',

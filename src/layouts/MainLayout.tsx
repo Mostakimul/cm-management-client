@@ -1,7 +1,7 @@
 import { RiAlignJustify } from 'react-icons/ri';
 import { Outlet } from 'react-router-dom';
 import Signout from '../components/Signout';
-import { userPaths } from '../routes/user.routes';
+import { adminPath } from '../routes/admin.routes';
 import Sidebar from './Sidebar';
 
 const MainLayout = () => {
@@ -34,7 +34,7 @@ const MainLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <Sidebar paths={userPaths} />
+        <Sidebar paths={adminPath} />
       </div>
     </div>
   );

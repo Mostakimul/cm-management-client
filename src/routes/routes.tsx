@@ -3,7 +3,9 @@ import App from '../App';
 import ProtectedRoute from '../layouts/ProtectedRoute';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import { userPaths } from './user.routes';
+import { adminPath } from './admin.routes';
+import { buyerPath } from './buyer.routes';
+import { sellerPath } from './seller.routes';
 
 const router = createBrowserRouter([
   {
@@ -11,13 +13,31 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/user',
+    path: '/admin',
     element: (
-      <ProtectedRoute role="user">
+      <ProtectedRoute role="admin">
         <App />
       </ProtectedRoute>
     ),
-    children: userPaths,
+    children: adminPath,
+  },
+  {
+    path: '/buyer',
+    element: (
+      <ProtectedRoute role="buyer">
+        <App />
+      </ProtectedRoute>
+    ),
+    children: buyerPath,
+  },
+  {
+    path: '/seller',
+    element: (
+      <ProtectedRoute role="seller">
+        <App />
+      </ProtectedRoute>
+    ),
+    children: sellerPath,
   },
   {
     path: '/login',

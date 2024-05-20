@@ -2,10 +2,12 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import InputField from '../../../components/form/InputField';
+import { selectCurrentUser } from '../../../redux/features/auth/authSlice';
 import {
   useAddProductMutation,
   useUpdateProductMutation,
 } from '../../../redux/features/item/itemApi';
+import { useAppSelector } from '../../../redux/hooks';
 import { TProduct } from '../../../types/item.type';
 
 type TItemProps = {
@@ -33,6 +35,7 @@ const ItemForm = ({ item }: TItemProps) => {
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
+  const user = useAppSelector(selectCurrentUser);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log('Data ', data);
@@ -53,7 +56,7 @@ const ItemForm = ({ item }: TItemProps) => {
             id: toastId,
             duration: 2000,
           });
-          navigate('/user/all-items');
+          navigate(`/${user}/all-items`);
         }
       } else {
         const result = await addProduct(convertedData);
@@ -63,7 +66,7 @@ const ItemForm = ({ item }: TItemProps) => {
             duration: 2000,
           });
           reset();
-          navigate('/user/all-items');
+          navigate('/admin/all-items');
         }
       }
     } catch (error) {
@@ -87,7 +90,7 @@ const ItemForm = ({ item }: TItemProps) => {
           duration: 2000,
         });
         reset();
-        navigate('/user/all-items');
+        navigate('/admin/all-items');
       }
     } catch (error) {
       toast.error('Something went wrong!', { id: toastId, duration: 2000 });

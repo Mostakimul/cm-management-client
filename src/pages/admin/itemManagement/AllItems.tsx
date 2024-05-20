@@ -7,6 +7,7 @@ import Modal from '../../../components/Modal';
 import Pagination from '../../../components/Pagination';
 import SellForm from '../../../components/SellForm';
 import SelectField from '../../../components/form/SelectField';
+import { selectCurrentUser } from '../../../redux/features/auth/authSlice';
 import {
   useBulkDeleteItemMutation,
   useDeleteItemMutation,
@@ -35,6 +36,7 @@ const AllItems = () => {
   );
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [sellingItem, setSellingItem] = useState<TProduct & { _id: string }>();
+  const user = useAppSelector(selectCurrentUser);
 
   /**
    * rtk  queries
@@ -107,7 +109,7 @@ const AllItems = () => {
   };
 
   const handleEdit = (id: string) => {
-    navigate(`/user/edit-item/${id}`);
+    navigate(`/${user?.role}/edit-item/${id}`);
   };
 
   const handleOnchange = (

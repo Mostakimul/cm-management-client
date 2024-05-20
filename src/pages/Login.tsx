@@ -3,7 +3,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useLoginMutation } from '../redux/features/auth/authApi';
-import { setUser, useCurrentToken } from '../redux/features/auth/authSlice';
+import {
+  selectCurrentUser,
+  setUser,
+  useCurrentToken,
+} from '../redux/features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { IUserLoginInput } from '../types';
 import { verifyToken } from '../utils/verifyToken';
@@ -14,12 +18,13 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm<IUserLoginInput>();
+  const user = useAppSelector(selectCurrentUser);
 
   useEffect(() => {
     if (token) {
-      navigate('/user/dashboard');
+      navigate(`/${user?.role}/dashboard`);
     }
-  }, [navigate, token]);
+  }, [navigate, token, user?.role]);
 
   const onSubmit: SubmitHandler<IUserLoginInput> = async (data) => {
     const toastId = toast.loading('Log in progress...');
@@ -34,7 +39,7 @@ const Login = () => {
             token: result.data.data.accessToken,
           }),
         );
-        navigate('/user/dashboard');
+        navigate('/admin/dashboard');
         toast.success('Login successfully', { id: toastId, duration: 2000 });
       }
 

@@ -2,7 +2,6 @@ import Dashboard from '../pages/admin/Dashboard';
 import AllItems from '../pages/admin/itemManagement/AllItems';
 import SingleItem from '../pages/admin/itemManagement/SingleItem';
 import AllPurchase from '../pages/buyer/AllPurchase';
-import SinglePurchase from '../pages/buyer/SinglePurchase';
 
 export const buyerPath = [
   {
@@ -33,11 +32,6 @@ export const buyerPath = [
         name: 'All Purchase',
         path: 'all-purchase',
         element: <AllPurchase />,
-      },
-      {
-        name: 'purchase Item Details',
-        path: 'purchase-item-details/:id',
-        element: <SinglePurchase />,
       },
     ],
   },

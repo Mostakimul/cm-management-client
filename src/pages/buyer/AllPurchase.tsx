@@ -101,6 +101,7 @@ const AllPurchase = () => {
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>{content}</tbody>

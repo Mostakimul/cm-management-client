@@ -6,7 +6,6 @@ import { useGetSingleItemQuery } from '../../../redux/features/item/itemApi';
 const SingleItem = () => {
   const { id } = useParams();
   const { data, isError, isLoading } = useGetSingleItemQuery(id);
-  console.log(data?.data);
 
   let content = null;
   if (isLoading && !isError) {

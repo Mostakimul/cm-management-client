@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+##### Live Link: https://cmu-client.vercel.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Backend Repo Link: https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-backend-Mostakimul
 
-Currently, two official plugins are available:
+### API endpoints documentation: https://documenter.getpostman.com/view/16306758/2sA3BuWojo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to Run Locally
 
-## Expanding the ESLint configuration
+### Clone the repository:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+git clone https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-fronten-Mostakimul.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Install dependencies:
+
+```
+yarn install
+```
+
+### Set up environment variables:
+
+Create a .env file in the root directory and add the following:
+
+```
+VITE_APP_API_URL="YOUR_API_LINK"
+```
+
+### Run the server:
+
+```
+yarn dev
+```
+
+# Naveen Client
+
+It is sales and inventory management system for pc item.
+
+## Technologies Used
+
+- Vite
+- React
+- Redux
+- Redux Toolkit
+- React router dom
+- Tailwind CSS
+- Daysi UI
+- React hook form
+- Date-fns
+- jwt-decode
+- sooner

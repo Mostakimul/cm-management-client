@@ -35,7 +35,11 @@ const MainLayout = () => {
         {/* Page goes here */}
 
         <div className="w-full h-full p-2">
-          <div className="flex items-end justify-end">
+          <div className="flex items-center justify-end gap-5">
+            <div className="badge badge-accent badge-outline">
+              Role: {user?.role}
+            </div>
+
             <Signout />
           </div>
           <Outlet />

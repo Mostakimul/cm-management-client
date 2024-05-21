@@ -257,7 +257,7 @@ const MyItems = () => {
         )}
       </div>
 
-      {user?.role === 'admin' && (
+      {user?.role === 'seller' && (
         <div>
           <button
             onClick={handleBulkDelete}

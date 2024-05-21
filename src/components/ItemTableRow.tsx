@@ -27,13 +27,14 @@ const ItemTableRow = ({
 
   return (
     <tr className="hover">
-      {user?.role === 'admin' && (
+      {user?.role === 'seller' && (
         <th>
           <label>
             <input
               onChange={() => handleIdSelect(row._id)}
               type="checkbox"
               className="checkbox"
+              disabled={row.seller.email !== user?.email}
             />
           </label>
         </th>

@@ -237,7 +237,7 @@ const AllItems = () => {
             {/* head */}
             <thead>
               <tr>
-                {user?.role === 'admin' && <th>#</th>}
+                {user?.role === 'seller' && <th>#</th>}
                 <th>Name</th>
                 <th>Brand</th>
                 <th>Price</th>
@@ -257,7 +257,7 @@ const AllItems = () => {
         )}
       </div>
 
-      {user?.role === 'admin' && (
+      {user?.role === 'seller' && (
         <div>
           <button
             onClick={handleBulkDelete}

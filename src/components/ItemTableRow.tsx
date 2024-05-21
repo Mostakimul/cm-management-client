@@ -56,9 +56,16 @@ const ItemTableRow = ({
         >
           Delete
         </button>
-        <button className="btn btn-sm btn-outline" onClick={handleClick}>
-          Sell
-        </button>
+        {user?.role === 'buyer' ? (
+          <button className="btn btn-sm btn-outline" onClick={handleClick}>
+            Buy
+          </button>
+        ) : (
+          <button className="btn btn-sm btn-outline" onClick={handleClick}>
+            Sell
+          </button>
+        )}
+
         <button
           className="btn btn-sm btn-outline btn-accent"
           onClick={() => navigate(`/${user?.role}/single-item/${row._id}`)}

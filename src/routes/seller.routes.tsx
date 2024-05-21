@@ -26,6 +26,11 @@ export const sellerPath = [
         element: <AllItems />,
       },
       {
+        name: 'My Items',
+        path: 'my-items',
+        element: <AllItems />,
+      },
+      {
         name: 'Edit Item',
         path: 'edit-item/:id',
         element: <UpdateItem />,
@@ -41,8 +46,8 @@ export const sellerPath = [
     name: 'Sales Management',
     children: [
       {
-        name: 'All Sales',
-        path: 'all-sales',
+        name: 'My Sales',
+        path: 'my-sales',
         element: <AllSales />,
       },
       {

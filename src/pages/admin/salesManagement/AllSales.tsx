@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Alert from '../../../components/Alert';
 import Error from '../../../components/Error';
 import Pagination from '../../../components/Pagination';
 import SoldItemRow from '../../../components/SoldItemRow';
@@ -52,6 +53,12 @@ const AllSales = () => {
     content = data?.data.map((item: TSell) => (
       <SoldItemRow key={item._id} row={item} />
     ));
+  } else {
+    content = (
+      <tr className="text-center">
+        <Alert message="No data found!" />
+      </tr>
+    );
   }
 
   return (

@@ -1,3 +1,4 @@
+import CreateAdmin from '../pages/admin/CreateAdmin';
 import Dashboard from '../pages/admin/Dashboard';
 import AllItems from '../pages/admin/itemManagement/AllItems';
 import SingleItem from '../pages/admin/itemManagement/SingleItem';
@@ -9,6 +10,11 @@ export const adminPath = [
     name: 'Dashboard',
     path: 'dashboard',
     element: <Dashboard />,
+  },
+  {
+    name: 'Create Admin',
+    path: 'create-admin',
+    element: <CreateAdmin />,
   },
   {
     name: 'Item Management',

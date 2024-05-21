@@ -237,7 +237,7 @@ const AllItems = () => {
             {/* head */}
             <thead>
               <tr>
-                <th>#</th>
+                {user?.role === 'admin' && <th>#</th>}
                 <th>Name</th>
                 <th>Brand</th>
                 <th>Price</th>
@@ -257,15 +257,18 @@ const AllItems = () => {
         )}
       </div>
 
-      <div>
-        <button
-          onClick={handleBulkDelete}
-          disabled={selectedIds.length < 1}
-          className="btn btn-sm btn-error"
-        >
-          Delete Bulk
-        </button>
-      </div>
+      {user?.role === 'admin' && (
+        <div>
+          <button
+            onClick={handleBulkDelete}
+            disabled={selectedIds.length < 1}
+            className="btn btn-sm btn-error"
+          >
+            Delete Bulk
+          </button>
+        </div>
+      )}
+
       <Modal>
         <SellForm item={sellingItem} />
       </Modal>

@@ -27,15 +27,17 @@ const ItemTableRow = ({
 
   return (
     <tr className="hover">
-      <th>
-        <label>
-          <input
-            onChange={() => handleIdSelect(row._id)}
-            type="checkbox"
-            className="checkbox"
-          />
-        </label>
-      </th>
+      {user?.role === 'admin' && (
+        <th>
+          <label>
+            <input
+              onChange={() => handleIdSelect(row._id)}
+              type="checkbox"
+              className="checkbox"
+            />
+          </label>
+        </th>
+      )}
       <td>{row.name}</td>
       <td>{row.brand}</td>
       <td>$ {row.price}</td>

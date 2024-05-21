@@ -50,7 +50,6 @@ const itemApi = baseApi.injectEndpoints({
     }),
     bulkDeleteItem: builder.mutation({
       query: (productIds) => {
-        console.log(productIds);
         return {
           url: `/products/bulk-delete`,
           method: 'POST',

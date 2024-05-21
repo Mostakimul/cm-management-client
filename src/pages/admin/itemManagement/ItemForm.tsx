@@ -38,7 +38,6 @@ const ItemForm = ({ item }: TItemProps) => {
   const user = useAppSelector(selectCurrentUser);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log('Data ', data);
     const toastId = toast.loading('Creation in progress...');
     const convertedData = {
       ...data,

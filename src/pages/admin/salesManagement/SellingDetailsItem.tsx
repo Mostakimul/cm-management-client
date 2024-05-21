@@ -7,8 +7,6 @@ import { useGetSingleSaleQuery } from '../../../redux/features/sell/sellApi';
 const SellingDetailsItem = () => {
   const { id } = useParams();
   const { data, isError, isLoading } = useGetSingleSaleQuery(id);
-  console.log(data?.data);
-
   let content = null;
   if (isLoading && !isError) {
     content = <span className="loading loading-bars loading-lg"></span>;

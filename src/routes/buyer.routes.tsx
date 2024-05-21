@@ -1,10 +1,8 @@
 import Dashboard from '../pages/admin/Dashboard';
-import AddNewItem from '../pages/admin/itemManagement/AddNewItem';
 import AllItems from '../pages/admin/itemManagement/AllItems';
 import SingleItem from '../pages/admin/itemManagement/SingleItem';
-import UpdateItem from '../pages/admin/itemManagement/UpdateItem';
-import AllSales from '../pages/admin/salesManagement/AllSales';
-import SellingDetailsItem from '../pages/admin/salesManagement/SellingDetailsItem';
+import AllPurchase from '../pages/buyer/AllPurchase';
+import SinglePurchase from '../pages/buyer/SinglePurchase';
 
 export const buyerPath = [
   {
@@ -16,20 +14,11 @@ export const buyerPath = [
     name: 'Item Management',
     children: [
       {
-        name: 'Add Item',
-        path: 'add-item',
-        element: <AddNewItem />,
-      },
-      {
         name: 'All Items',
         path: 'all-items',
         element: <AllItems />,
       },
-      {
-        name: 'Edit Item',
-        path: 'edit-item/:id',
-        element: <UpdateItem />,
-      },
+
       {
         name: 'Single Item',
         path: 'single-item/:id',
@@ -38,17 +27,17 @@ export const buyerPath = [
     ],
   },
   {
-    name: 'Sales Management',
+    name: 'Purchase Management',
     children: [
       {
-        name: 'All Sales',
-        path: 'all-sales',
-        element: <AllSales />,
+        name: 'All Purchase',
+        path: 'all-purchase',
+        element: <AllPurchase />,
       },
       {
-        name: 'Sold Item Details',
-        path: 'sold-item-details/:id',
-        element: <SellingDetailsItem />,
+        name: 'purchase Item Details',
+        path: 'purchase-item-details/:id',
+        element: <SinglePurchase />,
       },
     ],
   },

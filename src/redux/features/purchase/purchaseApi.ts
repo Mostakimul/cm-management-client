@@ -8,9 +8,30 @@ const purchaseApi = baseApi.injectEndpoints({
         method: 'POST',
         body: productInfo,
       }),
-      invalidatesTags: ['sales', 'products'],
+      invalidatesTags: ['sales', 'products', 'purchases'],
+    }),
+    getAllPurchase: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          Object.entries(args).forEach(([key, value]) => {
+            if (typeof value === 'string' || typeof value === 'number') {
+              params.append(key, value.toString());
+            }
+          });
+        }
+
+        return {
+          url: '/purchase',
+          method: 'GET',
+          params: params,
+        };
+      },
+      providesTags: ['purchases'],
     }),
   }),
 });
 
-export const { usePurchaseProductMutation } = purchaseApi;
+export const { usePurchaseProductMutation, useGetAllPurchaseQuery } =
+  purchaseApi;

@@ -44,26 +44,28 @@ const ItemTableRow = ({
       <td>{row.condition}</td>
       <td>{row.compatibility}</td>
       <td className="space-x-3">
-        <button
-          onClick={() => handleEdit(row._id)}
-          className="btn btn-sm btn-outline btn-primary"
-        >
-          Edit & Variant
-        </button>
-        <button
-          onClick={() => handleDelete(row._id)}
-          className="btn btn-sm btn-outline btn-error"
-        >
-          Delete
-        </button>
         {user?.role === 'buyer' ? (
           <button className="btn btn-sm btn-outline" onClick={handleClick}>
             Buy
           </button>
         ) : (
-          <button className="btn btn-sm btn-outline" onClick={handleClick}>
-            Sell
-          </button>
+          <>
+            <button
+              onClick={() => handleEdit(row._id)}
+              className="btn btn-sm btn-outline btn-primary"
+            >
+              Edit & Variant
+            </button>
+            <button
+              onClick={() => handleDelete(row._id)}
+              className="btn btn-sm btn-outline btn-error"
+            >
+              Delete
+            </button>
+            <button className="btn btn-sm btn-outline" onClick={handleClick}>
+              Sell
+            </button>
+          </>
         )}
 
         <button

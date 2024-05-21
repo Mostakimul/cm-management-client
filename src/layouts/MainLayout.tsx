@@ -1,10 +1,23 @@
 import { RiAlignJustify } from 'react-icons/ri';
 import { Outlet } from 'react-router-dom';
 import Signout from '../components/Signout';
+import { selectCurrentUser } from '../redux/features/auth/authSlice';
+import { useAppSelector } from '../redux/hooks';
 import { adminPath } from '../routes/admin.routes';
+import { buyerPath } from '../routes/buyer.routes';
+import { sellerPath } from '../routes/seller.routes';
 import Sidebar from './Sidebar';
 
 const MainLayout = () => {
+  const user = useAppSelector(selectCurrentUser);
+
+  const routesPath =
+    user?.role === 'buyer'
+      ? buyerPath
+      : user?.role === 'seller'
+      ? sellerPath
+      : adminPath;
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -34,7 +47,7 @@ const MainLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <Sidebar paths={adminPath} />
+        <Sidebar paths={routesPath} />
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import Error from '../../../components/Error';
-import Pagination from '../../../components/Pagination';
-import SoldItemRow from '../../../components/SoldItemRow';
-import SelectField from '../../../components/form/SelectField';
-import { timeFrames } from '../../../constants/constants';
-import { useGetAllSalesQuery } from '../../../redux/features/sell/sellApi';
-import { TSell } from '../../../types';
+import Error from '../../components/Error';
+import Pagination from '../../components/Pagination';
+import PurchaseItemRow from '../../components/PurchaseItemRow';
+import SelectField from '../../components/form/SelectField';
+import { timeFrames } from '../../constants/constants';
+import { useGetAllPurchaseQuery } from '../../redux/features/purchase/purchaseApi';
+import { TPurchase } from '../../types';
 
-const AllSales = () => {
+const AllPurchase = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterValues, setFilterValues] = useState<{ [key: string]: string }>(
     {},
@@ -16,7 +16,7 @@ const AllSales = () => {
   /**
    * rtk  queries
    */
-  const { data, isLoading, isError } = useGetAllSalesQuery({
+  const { data, isLoading, isError } = useGetAllPurchaseQuery({
     page: currentPage,
     limit: 5,
     ...filterValues,
@@ -49,15 +49,15 @@ const AllSales = () => {
       </tr>
     );
   } else if (!isLoading && !isError && data?.data.length > 0) {
-    content = data?.data.map((item: TSell) => (
-      <SoldItemRow key={item._id} row={item} />
+    content = data?.data.map((item: TPurchase) => (
+      <PurchaseItemRow key={item._id} item={item} />
     ));
   }
 
   return (
     <div className="flex flex-col w-full my-5 gap-5">
       <div className="grid h-20 card bg-base-200 rounded-box place-items-center ">
-        <h1 className="text-3xl font-bold">All Sales</h1>
+        <h1 className="text-3xl font-bold">All Purchase</h1>
       </div>
       <div className="flex flex-row justify-between items-center card bg-base-200 rounded-box p-3">
         <div>
@@ -97,12 +97,10 @@ const AllSales = () => {
             {/* head */}
             <thead>
               <tr>
-                <th>Buyer Name</th>
+                <th>Seller Email</th>
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>Date</th>
-
-                <th>Action</th>
               </tr>
             </thead>
             <tbody>{content}</tbody>
@@ -117,4 +115,4 @@ const AllSales = () => {
   );
 };
 
-export default AllSales;
+export default AllPurchase;

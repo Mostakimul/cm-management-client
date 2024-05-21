@@ -7,6 +7,9 @@ const ProductCard = ({ data }: { data: TProduct }) => {
         <p className="font-semibold">Product Name:</p>
         <p>{data.name}</p>
 
+        <p className="font-semibold">Price:</p>
+        <p>$ {data.price}</p>
+
         <p className="font-semibold">Brand:</p>
         <p>{data.brand}</p>
 

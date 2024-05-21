@@ -6,16 +6,20 @@ import {
   selectCurrentUser,
   useCurrentToken,
 } from '../redux/features/auth/authSlice';
-import { useCreateUserMutation } from '../redux/features/user/userApi';
+import {
+  useCreateBuyerMutation,
+  useCreateSellerMutation,
+} from '../redux/features/user/userApi';
 import { useAppSelector } from '../redux/hooks';
 import { IUserRegisterInput } from '../types/userRegister.type';
 
 const Register = () => {
   const token = useAppSelector(useCurrentToken);
-  const [createUser] = useCreateUserMutation();
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm<IUserRegisterInput>();
   const user = useAppSelector(selectCurrentUser);
+  const [createBuyer] = useCreateBuyerMutation();
+  const [createSeller] = useCreateSellerMutation();
 
   useEffect(() => {
     if (token) {
@@ -25,9 +29,15 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<IUserRegisterInput> = async (data) => {
     const toastId = toast.loading('Registration in progress...');
+    const { role, ...payloadData } = data;
 
     try {
-      const result = await createUser(data);
+      let result;
+      if (role === 'buyer') {
+        result = await createBuyer(payloadData);
+      } else {
+        result = await createSeller(payloadData);
+      }
 
       if (result.data.success === true) {
         navigate('/login');
@@ -78,8 +88,33 @@ const Register = () => {
               placeholder="Password"
             />
           </label>
+
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">As Buyer</span>
+              <input
+                type="radio"
+                value="buyer"
+                {...register('role', { required: true })}
+                className="radio checked:bg-red-500"
+                checked
+              />
+            </label>
+          </div>
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">As Seller</span>
+              <input
+                type="radio"
+                value="seller"
+                {...register('role', { required: true })}
+                className="radio checked:bg-blue-500"
+                checked
+              />
+            </label>
+          </div>
         </div>
-        <button type="button" className="btn btn-sm btn-primary">
+        <button type="submit" className="btn btn-sm btn-primary">
           Register
         </button>
         <div className="mt-5">

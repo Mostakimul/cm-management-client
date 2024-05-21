@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Error from '../../components/Error';
+import Modal from '../../components/Modal';
 import Pagination from '../../components/Pagination';
 import PurchaseItemRow from '../../components/PurchaseItemRow';
+import ServiceForm from '../../components/ServiceForm';
 import SelectField from '../../components/form/SelectField';
 import { timeFrames } from '../../constants/constants';
 import { useGetAllPurchaseQuery } from '../../redux/features/purchase/purchaseApi';
@@ -12,6 +14,7 @@ const AllPurchase = () => {
   const [filterValues, setFilterValues] = useState<{ [key: string]: string }>(
     {},
   );
+  const [purchasedItem, setPurchasedItem] = useState<TPurchase>();
 
   /**
    * rtk  queries
@@ -39,6 +42,12 @@ const AllPurchase = () => {
     }));
   };
 
+  const generateModal = (purchaseItem: TPurchase) => {
+    const modal = document.getElementById('my_modal_5') as HTMLDialogElement;
+    modal.showModal();
+    setPurchasedItem(purchaseItem);
+  };
+
   let content = null;
   if (isLoading && !isError) {
     content = <tr className="loading loading-bars loading-lg"></tr>;
@@ -50,7 +59,11 @@ const AllPurchase = () => {
     );
   } else if (!isLoading && !isError && data?.data.length > 0) {
     content = data?.data.map((item: TPurchase) => (
-      <PurchaseItemRow key={item._id} item={item} />
+      <PurchaseItemRow
+        key={item._id}
+        item={item}
+        generateModal={generateModal}
+      />
     ));
   }
 
@@ -97,6 +110,7 @@ const AllPurchase = () => {
             {/* head */}
             <thead>
               <tr>
+                <th>Product</th>
                 <th>Seller Email</th>
                 <th>Quantity</th>
                 <th>Total Price</th>
@@ -112,6 +126,9 @@ const AllPurchase = () => {
           <Pagination meta={data?.meta} onPageChange={handlePageChange} />
         )}
       </div>
+      <Modal>
+        <ServiceForm item={purchasedItem} />
+      </Modal>
     </div>
   );
 };

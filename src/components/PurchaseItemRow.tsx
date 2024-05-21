@@ -4,11 +4,23 @@ import { selectCurrentUser } from '../redux/features/auth/authSlice';
 import { useAppSelector } from '../redux/hooks';
 import { TPurchase } from '../types';
 
-const PurchaseItemRow = ({ item }: { item: TPurchase }) => {
+const PurchaseItemRow = ({
+  item,
+  generateModal,
+}: {
+  item: TPurchase;
+  generateModal: (item: TPurchase) => void;
+}) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectCurrentUser);
+
+  const handleClick = () => {
+    generateModal(item);
+  };
+
   return (
     <tr className="hover">
+      <td>{item.product.name}</td>
       <td>{item.seller.email}</td>
       <td>{item.quantity}</td>
       <td>$ {item.totalAmount}</td>
@@ -21,6 +33,10 @@ const PurchaseItemRow = ({ item }: { item: TPurchase }) => {
           className="btn btn-sm btn-outline btn-primary"
         >
           Show Product Details
+        </button>
+
+        <button className="btn btn-sm btn-outline" onClick={handleClick}>
+          Request Servicing
         </button>
       </td>
     </tr>

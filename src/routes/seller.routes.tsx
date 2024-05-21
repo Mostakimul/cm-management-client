@@ -5,6 +5,7 @@ import SingleItem from '../pages/admin/itemManagement/SingleItem';
 import UpdateItem from '../pages/admin/itemManagement/UpdateItem';
 import AllSales from '../pages/admin/salesManagement/AllSales';
 import SellingDetailsItem from '../pages/admin/salesManagement/SellingDetailsItem';
+import MyItems from '../pages/buyer/MyItems';
 
 export const sellerPath = [
   {
@@ -28,7 +29,7 @@ export const sellerPath = [
       {
         name: 'My Items',
         path: 'my-items',
-        element: <AllItems />,
+        element: <MyItems />,
       },
       {
         name: 'Edit Item',

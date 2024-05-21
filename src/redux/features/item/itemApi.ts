@@ -8,7 +8,7 @@ const itemApi = baseApi.injectEndpoints({
         method: 'POST',
         body: productInfo,
       }),
-      invalidatesTags: ['products'],
+      invalidatesTags: ['products', 'myProducts'],
     }),
     updateProduct: builder.mutation({
       query: ({ id, data }) => ({
@@ -18,6 +18,7 @@ const itemApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: (_result, _error, { id }) => [
         'products',
+        'myProducts',
         { type: 'product', id },
       ],
     }),
@@ -41,12 +42,32 @@ const itemApi = baseApi.injectEndpoints({
       },
       providesTags: ['products'],
     }),
+    getMyItems: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          Object.entries(args).forEach(([key, value]) => {
+            if (typeof value === 'string' || typeof value === 'number') {
+              params.append(key, value.toString());
+            }
+          });
+        }
+
+        return {
+          url: '/products/my-products',
+          method: 'GET',
+          params: params,
+        };
+      },
+      providesTags: ['myProducts'],
+    }),
     deleteItem: builder.mutation({
       query: (id) => ({
         url: `/products/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['products'],
+      invalidatesTags: ['products', 'myProducts'],
     }),
     bulkDeleteItem: builder.mutation({
       query: (productIds) => {
@@ -58,7 +79,7 @@ const itemApi = baseApi.injectEndpoints({
           },
         };
       },
-      invalidatesTags: ['products'],
+      invalidatesTags: ['products', 'myProducts'],
     }),
     getSingleItem: builder.query({
       query: (id) => ({
@@ -85,4 +106,5 @@ export const {
   useUpdateProductMutation,
   useBulkDeleteItemMutation,
   useGetAllFiltersQuery,
+  useGetMyItemsQuery,
 } = itemApi;

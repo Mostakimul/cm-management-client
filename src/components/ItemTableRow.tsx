@@ -52,21 +52,28 @@ const ItemTableRow = ({
           </button>
         ) : (
           <>
-            <button
-              onClick={() => handleEdit(row._id)}
-              className="btn btn-sm btn-outline btn-primary"
-            >
-              Edit & Variant
-            </button>
-            <button
-              onClick={() => handleDelete(row._id)}
-              className="btn btn-sm btn-outline btn-error"
-            >
-              Delete
-            </button>
-            <button className="btn btn-sm btn-outline" onClick={handleClick}>
-              Sell
-            </button>
+            {row.seller.email === user?.email && (
+              <>
+                <button
+                  onClick={() => handleEdit(row._id)}
+                  className="btn btn-sm btn-outline btn-primary"
+                >
+                  Edit & Variant
+                </button>
+                <button
+                  onClick={() => handleDelete(row._id)}
+                  className="btn btn-sm btn-outline btn-error"
+                >
+                  Delete
+                </button>
+                <button
+                  className="btn btn-sm btn-outline"
+                  onClick={handleClick}
+                >
+                  Sell
+                </button>
+              </>
+            )}
           </>
         )}
 

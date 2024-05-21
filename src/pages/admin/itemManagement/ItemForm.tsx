@@ -55,7 +55,7 @@ const ItemForm = ({ item }: TItemProps) => {
             id: toastId,
             duration: 2000,
           });
-          navigate(`/${user}/all-items`);
+          navigate(`/${user?.role}/all-items`);
         }
       } else {
         const result = await addProduct(convertedData);
@@ -65,7 +65,7 @@ const ItemForm = ({ item }: TItemProps) => {
             duration: 2000,
           });
           reset();
-          navigate('/admin/all-items');
+          navigate(`/${user?.role}/all-items`);
         }
       }
     } catch (error) {
@@ -89,7 +89,7 @@ const ItemForm = ({ item }: TItemProps) => {
           duration: 2000,
         });
         reset();
-        navigate('/admin/all-items');
+        navigate(`/${user?.role}/all-items`);
       }
     } catch (error) {
       toast.error('Something went wrong!', { id: toastId, duration: 2000 });

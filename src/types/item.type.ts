@@ -1,3 +1,5 @@
+import { TUserType } from './global';
+
 export type TProduct = {
   name: string;
   price: number;
@@ -10,4 +12,5 @@ export type TProduct = {
   capacity?: string;
   color: string;
   formFactor?: string;
+  seller: TUserType;
 };

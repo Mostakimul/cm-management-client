@@ -1,6 +1,6 @@
 ##### Live Link: https://cmu-client.vercel.app
 
-### Backend Repo Link: https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-backend-Mostakimul
+### Backend Repo Link: https://github.com/Mostakimul/cm-management-server
 
 ### API endpoints documentation: https://documenter.getpostman.com/view/16306758/2sA3BuWojo
 
@@ -16,7 +16,7 @@ password: 12345678
 ### Clone the repository:
 
 ```
-git clone https://github.com/Porgramming-Hero-web-course/l2-b2-assignment-6-fronten-Mostakimul.git
+git clone https://github.com/Mostakimul/cm-management-client.git
 ```
 
 ### Install dependencies:
